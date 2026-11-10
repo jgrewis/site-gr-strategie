@@ -1,0 +1,8 @@
+# Secrets et configuration locale (jamais versionnés ni mis en ligne)
+.env
+.env.*
+!.env.example
+
+# Fichiers système
+.DS_Store
+Thumbs.db

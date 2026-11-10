@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Affichage dynamique Mulhouse, 35 € TTC/mois | GR Stratégie</title>
+<meta name="description" content="Louez la Box Vision dès 35 € TTC/mois à Mulhouse et dans le Haut-Rhin. Installation clé en main, logiciel simple. Démo sur place ou en visio.">
+<meta name="robots" content="noindex"><!-- maquette v2 non publiée -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* GR Stratégie — design tokens v2.1 (proposition, non publiée)
+   v2.1 = v2 validée par JP, fonds et dégradés seulement modifiés :
+   plus de crème / pêche ni de halos orange ; fonds neutres froids + sections sombres.
+   Polices : Plus Jakarta Sans (titres) + Inter (texte), Google Fonts, OFL. Icônes : Lucide (ISC), trait 1,5 px. */
+:root{
+  /* Sarcelle profond — marque, texte, fonds sombres (inchangés) */
+  --gr-ink:#0B2E33;        /* texte principal ; fond de section sombre */
+  --gr-teal-900:#08262A;   /* sarcelle nuit : bande finale, pied de page */
+  --gr-teal-800:#0E3F45;   /* départ du seul dégradé autorisé (sarcelle → encre, sections sombres) */
+  --gr-teal-700:#0E5A61;   /* sarcelle de marque : R du monogramme, liens, bouton secondaire */
+  --gr-teal-600:#13737A;   /* survol des liens */
+  --gr-mint:#5CC8BE;       /* liseré lumineux de la Box Vision, focus sur fond sombre */
+  /* Orange chaud néon — accent uniquement (jamais en fond de section) */
+  --gr-orange:#FF7A1F;        /* G du monogramme, bouton principal (texte encre), filets, chiffres */
+  --gr-orange-600:#F0650A;    /* survol du bouton principal */
+  --gr-orange-text:#B4470B;   /* orange en texte sur fond clair */
+  --gr-orange-on-dark:#FFA264;/* orange en petit texte sur fond sombre et verre sombre */
+  /* Fonds neutres v2.1 */
+  --gr-bg:#F3F5F5;         /* fond de page : blanc cassé froid */
+  --gr-bg-2:#E8EDED;       /* sections claires alternées : gris sarcelle très clair */
+  --gr-line:#D3DCDC;       /* filets, bordures */
+  --gr-white:#FFFFFF;      /* cartes */
+  --gr-muted:#4A6164;      /* texte secondaire sur clair */
+  --gr-muted-on-dark:#B3CACA; /* texte secondaire sur sombre */
+  --gr-dark-grad:linear-gradient(160deg,var(--gr-teal-800) 0%,var(--gr-ink) 60%);
+  /* Pôles (inchangés) + variantes texte */
+  --gr-vision:#E8473F;   --gr-vision-text:#B3261E;   --gr-vision-on-dark:#FF9D93;
+  --gr-connect:#38A8DC;  --gr-connect-text:#0F6A93;  --gr-connect-on-dark:#6CC4EC;
+  --gr-ads:#F5A623;      --gr-ads-text:#8A5600;      --gr-ads-on-dark:#F5A623;
+  /* Verre dépoli */
+  --gr-glass-bg:rgba(255,255,255,.74);
+  --gr-glass-border:rgba(255,255,255,.9);
+  --gr-glass-bg-dark:rgba(255,255,255,.06);
+  --gr-glass-border-dark:rgba(255,255,255,.14);
+  --gr-glass-blur:saturate(140%) blur(18px);
+  --gr-shadow:0 1px 2px rgba(11,46,51,.06),0 10px 28px -10px rgba(11,46,51,.18);
+  --gr-shadow-lg:0 2px 4px rgba(11,46,51,.06),0 30px 60px -20px rgba(11,46,51,.3);
+  --gr-glow-orange:0 0 0 1px rgba(255,122,31,.35),0 8px 26px -6px rgba(255,122,31,.55);
+  /* Formes */
+  --gr-r-sm:10px; --gr-r-md:16px; --gr-r-lg:24px; --gr-r-xl:32px; --gr-r-pill:999px;
+  /* Typographie (inchangée) */
+  --gr-font-title:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gr-font-text:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gr-fs-display:clamp(2.25rem,1.6rem + 2.8vw,3.5rem);
+  --gr-fs-h2:clamp(1.75rem,1.4rem + 1.4vw,2.5rem);
+  --gr-fs-h3:1.25rem; --gr-fs-lead:1.1875rem; --gr-fs-body:1.0625rem; --gr-fs-small:.875rem; --gr-fs-over:.8125rem;
+  --gr-lh-tight:1.12; --gr-lh-body:1.6;
+  --gr-s1:4px; --gr-s2:8px; --gr-s3:12px; --gr-s4:16px; --gr-s5:24px; --gr-s6:32px; --gr-s7:48px; --gr-s8:64px; --gr-s9:96px;
+  --gr-container:1180px;
+  --gr-focus:0 0 0 3px var(--gr-bg),0 0 0 5px var(--gr-teal-700);
+  --gr-focus-dark:0 0 0 3px var(--gr-ink),0 0 0 5px var(--gr-mint);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;font:400 var(--gr-fs-body)/var(--gr-lh-body) var(--gr-font-text);color:var(--gr-ink);background:var(--gr-bg);-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+h1,h2,h3{font-family:var(--gr-font-title);line-height:var(--gr-lh-tight);margin:0;letter-spacing:-.02em;text-wrap:balance}
+h1{font-size:var(--gr-fs-display);font-weight:800}
+h2{font-size:var(--gr-fs-h2);font-weight:800}
+h3{font-size:var(--gr-fs-h3);font-weight:700;letter-spacing:-.01em}
+p{margin:0}
+a{color:var(--gr-teal-700);text-underline-offset:3px}
+a:hover{color:var(--gr-teal-600)}
+:focus-visible{outline:none;box-shadow:var(--gr-focus);border-radius:8px}
+.w{width:100%;max-width:var(--gr-container);margin:0 auto;padding:0 20px}
+.ic{width:24px;height:24px;flex:none}
+.over{display:inline-flex;align-items:center;gap:8px;font:600 var(--gr-fs-over)/1 var(--gr-font-text);letter-spacing:.12em;text-transform:uppercase;color:var(--gr-orange-text);margin-bottom:14px}
+.over::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--gr-orange);box-shadow:0 0 8px var(--gr-orange)}
+.lead{font-size:var(--gr-fs-lead);color:var(--gr-ink)}
+.muted{color:var(--gr-muted)}
+.tbc{font:500 .78em/1 var(--gr-font-text);color:var(--gr-muted);background:rgba(11,46,51,.06);border:1px dashed rgba(11,46,51,.25);border-radius:6px;padding:.2em .45em;white-space:nowrap}
+.dark .tbc{color:#B9CFCF;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.25)}
+/* Boutons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:var(--gr-r-pill);font:600 1rem/1 var(--gr-font-text);text-decoration:none;border:1.5px solid transparent;transition:background .2s,box-shadow .2s,transform .2s,color .2s;cursor:pointer;white-space:nowrap}
+.btn .ic{width:20px;height:20px}
+.btn-p{background:var(--gr-orange);color:var(--gr-ink);box-shadow:var(--gr-glow-orange)}
+.btn-p:hover{background:var(--gr-orange-600);color:var(--gr-ink);transform:translateY(-1px)}
+.btn-s{background:#fff;color:var(--gr-teal-700);border-color:rgba(14,90,97,.35);backdrop-filter:var(--gr-glass-blur);-webkit-backdrop-filter:var(--gr-glass-blur)}
+.btn-s:hover{background:#fff;border-color:var(--gr-teal-700);color:var(--gr-teal-700)}
+.link{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--gr-teal-700);text-decoration:none}
+.link .ic{width:18px;height:18px;transition:transform .2s}
+.link:hover .ic{transform:translateX(3px)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+/* Verre */
+.glass{background:var(--gr-glass-bg);border:1px solid var(--gr-glass-border);backdrop-filter:var(--gr-glass-blur);-webkit-backdrop-filter:var(--gr-glass-blur);border-radius:var(--gr-r-lg);box-shadow:var(--gr-shadow)}
+/* Fonds doux */
+.soft{position:relative;isolation:isolate;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);z-index:-1;pointer-events:none}
+/* En-tête */
+header{position:sticky;top:0;z-index:50;padding:10px 0}
+header .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px;padding:0 10px 0 16px;border-radius:var(--gr-r-pill);background:rgba(243,245,245,.86);border:1px solid rgba(255,255,255,.8);backdrop-filter:var(--gr-glass-blur);-webkit-backdrop-filter:var(--gr-glass-blur);box-shadow:0 8px 24px -12px rgba(11,46,51,.25)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--gr-ink)}
+.brand svg{width:36px;height:40px}
+.brand b{font:800 1.125rem/1 var(--gr-font-title);letter-spacing:-.02em}
+.brand small{display:block;font:500 .6875rem/1.2 var(--gr-font-text);letter-spacing:.06em;text-transform:uppercase;color:var(--gr-muted);margin-top:3px}
+nav{display:flex;align-items:center;gap:4px}
+nav a.nl{display:none;padding:10px 12px;border-radius:999px;color:var(--gr-ink);text-decoration:none;font-weight:500;font-size:.9375rem}
+nav a.nl:hover{background:rgba(14,90,97,.08);color:var(--gr-ink)}
+nav .btn{display:none;min-height:44px;padding:0 18px;font-size:.9375rem}
+.menu{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 14px;border-radius:999px;border:1px solid rgba(14,90,97,.25);background:#fff;color:var(--gr-teal-700);font:600 .9375rem var(--gr-font-text)}
+/* Hero */
+.hero{margin-top:-80px;padding:112px 0 56px;overflow:hidden}
+.hero .grid{display:grid;gap:40px}
+.hero h1{margin-bottom:18px}
+.hero h1 em{font-style:normal;color:#fff;text-decoration:underline;text-decoration-color:var(--gr-orange);text-decoration-thickness:.07em;text-underline-offset:.14em;text-decoration-skip-ink:none}
+.hero .lead{margin-bottom:12px}
+.hero .muted{max-width:60ch}
+.price{display:flex;gap:16px;align-items:center;margin-top:24px;padding:16px 18px;border-radius:var(--gr-r-md)}
+.price .tag{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--gr-ink);color:var(--gr-orange);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 0 18px -4px rgba(255,122,31,.6)}
+.price strong{display:block;font:700 1.125rem/1.3 var(--gr-font-title)}
+.price strong span{font-size:1.3rem;white-space:nowrap;color:var(--gr-orange-text);font-weight:800}
+.price small{display:block;color:var(--gr-muted);font-size:var(--gr-fs-small);line-height:1.45;margin-top:2px}
+.chk{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:10px}
+.chk li{display:flex;gap:12px;align-items:flex-start}
+.chk .ic{width:22px;height:22px;color:var(--gr-teal-700);background:rgba(92,200,190,.22);border-radius:50%;padding:3px;margin-top:2px}
+.stage{position:relative;min-height:330px;display:grid;place-items:center}
+.stage .bv{width:min(100%,540px);position:relative;z-index:1;filter:drop-shadow(0 24px 30px rgba(11,46,51,.18))}
+.halo{position:absolute;inset:4% 0;border-radius:48px;background:radial-gradient(50% 42% at 50% 60%,rgba(92,200,190,.20),transparent 72%)}
+.float{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:16px;font:600 .875rem/1.2 var(--gr-font-text);color:var(--gr-ink)}
+.float i{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;font-style:normal}
+.float i .ic{width:19px;height:19px}
+.f1{top:14%;left:4%}.f1 i{background:rgba(255,122,31,.18);color:var(--gr-orange-text)}
+.f2{top:24%;right:0}.f2 i{background:rgba(92,200,190,.25);color:var(--gr-teal-700)}
+.f3{bottom:16%;left:4%}.f3 i{background:rgba(56,168,220,.2);color:var(--gr-connect-text)}
+.caption{position:absolute;bottom:-6px;right:0;font-size:.75rem;color:var(--gr-muted)}
+/* Sections */
+section{padding:72px 0}
+.head{max-width:760px;margin-bottom:36px}
+.head p{margin-top:14px}
+.alt{background:var(--gr-bg-2)}
+.glass{border-color:rgba(255,255,255,.95)}
+.alt .glass{background:rgba(255,255,255,.78)}
+.cards{display:grid;gap:16px}
+.card{padding:24px;border-radius:var(--gr-r-lg)}
+.card h3{margin:14px 0 8px}
+.card p{color:var(--gr-muted)}
+.step-n{display:flex;align-items:center;justify-content:space-between}
+.num{font:800 2.5rem/1 var(--gr-font-title);color:transparent;-webkit-text-stroke:1.5px var(--gr-orange);letter-spacing:-.04em}
+.chip-ic{flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:rgba(14,90,97,.1);box-shadow:inset 0 0 0 1px rgba(14,90,97,.08);color:var(--gr-teal-700)}
+.included{margin-top:20px;padding:24px;border-radius:var(--gr-r-lg);display:grid;gap:18px}
+.included h3{display:flex;align-items:center;gap:10px}
+.included ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.included li{display:flex;gap:12px;align-items:flex-start}
+.included li .ic{color:var(--gr-orange-text);margin-top:1px}
+.split{display:grid;gap:40px;align-items:center}
+.feat{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:14px}
+.feat li{display:flex;gap:14px;align-items:flex-start;padding:16px;border-radius:var(--gr-r-md)}
+.feat li .chip-ic{width:42px;height:42px;border-radius:12px}
+.feat b{display:block;font-weight:600;margin-bottom:2px}
+.feat span{color:var(--gr-muted)}
+/* Emplacements photo */
+.ph{position:relative;display:grid;place-items:center;text-align:center;gap:6px;min-height:260px;padding:20px;border-radius:var(--gr-r-lg);background:#DFE6E6;border:1.5px dashed rgba(14,90,97,.4);color:var(--gr-ink);overflow:hidden}
+.ph .ic{color:var(--gr-orange-text)}
+.ph .ic{width:30px;height:30px;margin:0 auto 4px}
+.ph b{font:600 .9375rem/1.3 var(--gr-font-text);position:relative;z-index:1}
+.ph small{font-size:.8125rem;color:var(--gr-muted);position:relative;z-index:1}
+.ph-in{display:grid;gap:6px;justify-items:center;position:relative;z-index:1}
+.ph.tall{min-height:300px}
+@media(min-width:980px){.ph.tall{min-height:520px}}
+.who .card{padding:12px 12px 22px}
+.who .ph{min-height:170px;border-radius:18px}
+.who .card .tx{padding:0 10px}
+.who h3{display:flex;align-items:center;gap:10px}
+.who h3 .ic{color:var(--gr-teal-700)}
+.note{display:flex;gap:14px;align-items:center;margin-top:20px;padding:18px 20px;border-radius:var(--gr-r-md)}
+.note .ic{color:var(--gr-teal-700)}
+.proof{display:inline-flex;align-items:center;gap:10px;margin-top:16px;padding:10px 18px 10px 10px;border-radius:22px;background:var(--gr-ink);color:#FFFFFF;font-weight:600;font-size:.9375rem}
+.proof i{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--gr-orange);color:var(--gr-ink)}
+.proof i .ic{width:17px;height:17px}
+.addr{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:12px 16px;border-radius:var(--gr-r-md);font-weight:600}
+.addr .ic{color:var(--gr-orange-text)}
+.svc .card{position:relative;overflow:hidden;display:flex;flex-direction:column}
+.svc .card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--pc)}
+.svc .chip-ic{background:color-mix(in srgb,var(--pc) 16%,transparent);color:var(--pt)}
+.svc .card p{flex:1;margin-bottom:18px}
+.svc .link{color:var(--pt)}
+/* CTA final */
+.dark{background:var(--gr-teal-900);color:#FFFFFF;position:relative;overflow:hidden;isolation:isolate}
+.dark h2{color:#fff}
+.dark p{color:var(--gr-muted-on-dark)}
+.dark .over{color:var(--gr-orange-on-dark)}
+.cta{padding:88px 0}
+.cta .glow{position:absolute;width:620px;height:620px;right:-160px;top:-220px;border-radius:50%;background:radial-gradient(circle,rgba(14,90,97,.75),rgba(14,90,97,0) 65%);z-index:-1}
+.cta .glow2{position:absolute;width:460px;height:460px;left:-160px;bottom:-240px;border-radius:50%;background:radial-gradient(circle,rgba(14,90,97,.55),transparent 65%);z-index:-1}
+.cta .panel{padding:32px 24px;border-radius:var(--gr-r-xl);background:var(--gr-glass-bg-dark);border:1px solid var(--gr-glass-border-dark);backdrop-filter:var(--gr-glass-blur);-webkit-backdrop-filter:var(--gr-glass-blur);display:grid;gap:28px}
+.cta .contact{list-style:none;padding:0;margin:0;display:grid;gap:12px;color:#E6F0EF}
+.cta .contact li{display:flex;gap:12px;align-items:center}
+.cta .contact .ic{color:var(--gr-mint)}
+.cta .contact a{color:#fff}
+.dark :focus-visible,.dsec :focus-visible{box-shadow:var(--gr-focus-dark)}
+/* Sections sombres v2.1 : dégradé sarcelle → encre */
+.dsec{background:var(--gr-dark-grad);color:#fff;position:relative;isolation:isolate}
+.dsec h1,.dsec h2,.dsec h3,.dsec .lead{color:#fff}
+.dsec .muted,.dsec .lead.muted,.dsec .feat span{color:var(--gr-muted-on-dark)}
+.dsec .over{color:var(--gr-orange-on-dark)}
+.dsec .glass{background:var(--gr-glass-bg-dark);border-color:var(--gr-glass-border-dark);box-shadow:0 20px 40px -24px rgba(0,0,0,.6)}
+.dsec .chip-ic{background:rgba(92,200,190,.14);box-shadow:inset 0 0 0 1px rgba(92,200,190,.22);color:var(--gr-mint)}
+.dsec .chk .ic{color:var(--gr-mint);background:rgba(92,200,190,.16)}
+.dsec .btn-s{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.35);color:#fff}
+.dsec .btn-s:hover{background:rgba(255,255,255,.14);border-color:#fff;color:#fff}
+.dsec .ph{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.28);color:#fff}
+.dsec .ph .ic{color:var(--gr-orange-on-dark)}.dsec .ph small{color:var(--gr-muted-on-dark)}
+.dsec .price .tag{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.dsec .price strong span{color:var(--gr-orange-on-dark)}
+.dsec .price small{color:var(--gr-muted-on-dark)}
+.dsec .float.glass{background:rgba(255,255,255,.92);border-color:#fff;box-shadow:0 14px 30px -12px rgba(0,0,0,.55)}
+.dsec .shape{position:absolute;border-radius:40px;z-index:-1;pointer-events:none}
+footer{background:#061D20;color:#9FB8B8;font-size:var(--gr-fs-small);padding:28px 0}
+footer .w{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+footer a{color:#D7E6E5}
+footer .brand{color:#fff}
+footer .brand svg{width:28px;height:32px}
+.sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;padding:8px;border-radius:999px;background:rgba(243,245,245,.86);border:1px solid rgba(255,255,255,.85);backdrop-filter:var(--gr-glass-blur);-webkit-backdrop-filter:var(--gr-glass-blur);box-shadow:0 12px 30px -10px rgba(11,46,51,.35)}
+.sticky .btn{width:100%}
+body{padding-bottom:84px}
+@media (max-width:559px){.f1{top:2%;left:0}.f2{top:auto;bottom:8%;right:0}.f3{display:none}.hero{padding-bottom:24px}}
+@media (min-width:560px){.cards.c2{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:760px){
+ .w{padding:0 32px}
+ .included{padding:28px 32px}
+ .included ul{grid-template-columns:1fr 1fr;gap:14px 28px}
+ .cta .panel{grid-template-columns:1.3fr 1fr;align-items:center;padding:48px}
+}
+@media (min-width:980px){
+ .price strong span{font-size:1.5rem}
+ nav a.nl{display:inline-block}nav .btn{display:inline-flex;margin-left:8px}.menu{display:none}
+ .sticky{display:none}body{padding-bottom:0}
+ .hero{padding:120px 0 80px}
+ .hero .grid{grid-template-columns:1fr 1fr;align-items:center;gap:56px}
+ .stage{min-height:540px}
+ .stage .bv{width:86%}
+ section{padding:104px 0}
+ .split{grid-template-columns:1fr 1fr;gap:72px}
+ .split.rev>:first-child{order:2}
+ .steps .card{padding:28px 30px}
+ .included ul{grid-template-columns:repeat(3,1fr)}
+ .cards.c4{grid-template-columns:repeat(4,1fr)}
+ .cards.c3{grid-template-columns:repeat(3,1fr)}
+ .who .cards{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" />
+  <path d="m12 5 7 7-7 7" /></symbol><symbol id="i-building-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+  <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+  <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+  <path d="M10 6h4" />
+  <path d="M10 10h4" />
+  <path d="M10 14h4" />
+  <path d="M10 18h4" /></symbol><symbol id="i-cable" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1" />
+  <path d="M19 15V6.5a1 1 0 0 0-7 0v11a1 1 0 0 1-7 0V9" />
+  <path d="M21 21v-2h-4" />
+  <path d="M3 5h4V3" />
+  <path d="M7 5a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a1 1 0 0 1 1-1V3" /></symbol><symbol id="i-calendar-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4" />
+  <path d="M16 2v4" />
+  <rect width="18" height="18" x="3" y="4" rx="2" />
+  <path d="M3 10h18" />
+  <path d="m9 16 2 2 4-4" /></symbol><symbol id="i-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+  <circle cx="12" cy="13" r="3" /></symbol><symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></symbol><symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
+  <polyline points="12 6 12 12 16 14" /></symbol><symbol id="i-cloud-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2" />
+  <path d="m4.93 4.93 1.41 1.41" />
+  <path d="M20 12h2" />
+  <path d="m19.07 4.93-1.41 1.41" />
+  <path d="M15.947 12.65a4 4 0 0 0-5.925-4.128" />
+  <path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z" /></symbol><symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" />
+  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+  <path d="M2 12h20" /></symbol><symbol id="i-graduation-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+  <path d="M22 10v6" />
+  <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></symbol><symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+  <circle cx="9" cy="9" r="2" />
+  <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /></symbol><symbol id="i-landmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22" />
+  <line x1="6" x2="6" y1="18" y2="11" />
+  <line x1="10" x2="10" y1="18" y2="11" />
+  <line x1="14" x2="14" y1="18" y2="11" />
+  <line x1="18" x2="18" y1="18" y2="11" />
+  <polygon points="12 2 20 7 4 7" /></symbol><symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+  <path d="M7 11V7a5 5 0 0 1 10 0v4" /></symbol><symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" />
+  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></symbol><symbol id="i-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+  <circle cx="12" cy="10" r="3" /></symbol><symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z" />
+  <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" /></symbol><symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12" />
+  <line x1="4" x2="20" y1="6" y2="6" />
+  <line x1="4" x2="20" y1="18" y2="18" /></symbol><symbol id="i-monitor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2" />
+  <line x1="8" x2="16" y1="21" y2="21" />
+  <line x1="12" x2="12" y1="17" y2="21" /></symbol><symbol id="i-mouse-pointer-click" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4.1 12 6" />
+  <path d="m5.1 8-2.9-.8" />
+  <path d="m6 12-1.9 2" />
+  <path d="M7.2 2.2 8 5.1" />
+  <path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z" /></symbol><symbol id="i-package" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
+  <path d="M12 22V12" />
+  <path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7" />
+  <path d="m7.5 4.27 9 5.15" /></symbol><symbol id="i-party-popper" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79" />
+  <path d="M4 3h.01" />
+  <path d="M22 8h.01" />
+  <path d="M15 2h.01" />
+  <path d="M22 20h.01" />
+  <path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10" />
+  <path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17" />
+  <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7" />
+  <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z" /></symbol><symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></symbol><symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 20 12 6 21 6 3" /></symbol><symbol id="i-printer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+  <path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6" />
+  <rect x="6" y="14" width="12" height="8" rx="1" /></symbol><symbol id="i-refresh-cw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+  <path d="M21 3v5h-5" />
+  <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" />
+  <path d="M8 16H3v5" /></symbol><symbol id="i-repeat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4" />
+  <path d="M3 11v-1a4 4 0 0 1 4-4h14" />
+  <path d="m7 22-4-4 4-4" />
+  <path d="M21 13v1a4 4 0 0 1-4 4H3" /></symbol><symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" />
+  <path d="m21 21-4.3-4.3" /></symbol><symbol id="i-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+  <path d="m9 12 2 2 4-4" /></symbol><symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" />
+  <path d="M20 3v4" />
+  <path d="M22 5h-4" />
+  <path d="M4 17v2" />
+  <path d="M5 18H3" /></symbol><symbol id="i-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" />
+  <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+  <path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" />
+  <path d="M2 7h20" />
+  <path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7" /></symbol><symbol id="i-tv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="15" x="2" y="7" rx="2" ry="2" />
+  <polyline points="17 2 12 7 7 2" /></symbol><symbol id="i-users-round" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a8 8 0 0 0-16 0" />
+  <circle cx="10" cy="8" r="5" />
+  <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" /></symbol><symbol id="i-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01" />
+  <path d="M2 8.82a15 15 0 0 1 20 0" />
+  <path d="M5 12.859a10 10 0 0 1 14 0" />
+  <path d="M8.5 16.429a5 5 0 0 1 7 0" /></symbol><symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" /></symbol><symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" />
+  <path d="m6 6 12 12" /></symbol></defs></svg>
+<header><div class="w"><div class="bar">
+ <a class="brand" href="#" aria-label="GR Stratégie, accueil"><svg class="m" viewBox="92 62 606 714" role="img" aria-label="GR Stratégie" xmlns="http://www.w3.org/2000/svg"><defs><mask id="k1" maskUnits="userSpaceOnUse" x="0" y="0" width="879" height="878"><rect width="879" height="878" fill="#fff"/><path d="M640 160 C580 112 505 97 427 97 C240 97 122 240 122 425 C122 610 245 738 427 738 C535 738 612 716 668 690 V420 H500" fill="none" stroke="#000" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><path mask="url(#k1)" fill-rule="evenodd" fill="#0E5A61" d="M245 80 H470 C600 80 662 160 662 272 C662 360 614 418 527 440 L676 762 H604 L438 450 H310 V762 H245 Z M310 155 V395 H468 C552 395 598 345 598 274 C598 200 552 155 468 155 Z"/><path d="M640 160 C580 112 505 97 427 97 C240 97 122 240 122 425 C122 610 245 738 427 738 C535 738 612 716 668 690 V420 H500" fill="none" stroke="#FF7A1F" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>GR Stratégie</b><small>Mulhouse · Haut-Rhin</small></span></a>
+ <nav aria-label="Navigation principale">
+  <a class="nl" href="#location">Location</a><a class="nl" href="#box-vision">La Box Vision</a><a class="nl" href="#pour-qui">Pour qui</a><a class="nl" href="#services">Services</a><a class="nl" href="#contact">Contact</a>
+  <a class="btn btn-p" href="#contact">Demander une démo</a>
+  <span class="menu"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg> Menu</span>
+ </nav>
+</div></div></header>
+
+<main>
+<!-- S1 HERO -->
+<section class="hero dsec soft">
+ <div class="shape" style="width:420px;height:420px;right:-120px;top:120px;background:#0E4A50;transform:rotate(18deg)"></div>
+ <div class="w grid">
+  <div>
+   <span class="over">Affichage dynamique · Box Vision</span>
+   <h1>Location d'affichage dynamique à <em>Mulhouse</em> et dans le Haut-Rhin</h1>
+   <p class="lead">Vos écrans affichent vos promotions, vos horaires et vos informations, sans que vous ayez à vous en occuper.</p>
+   <p class="muted">GR Stratégie loue des solutions d'affichage dynamique aux commerces, PME et collectivités de Mulhouse et du Haut-Rhin. Nous installons la Box Vision — et l'écran si vous le souhaitez — puis vous programmez vos messages depuis un logiciel simple.</p>
+   <div class="price glass"><span class="tag"><svg class="ic" aria-hidden="true"><use href="#i-package"/></svg></span><div><strong>Box Vision à partir de <span>35 € TTC</span>/mois*</strong><small>*tarif sur 48 mois, engagement minimum 3 mois. Facturation mensuelle. Achat possible.</small></div></div>
+   <ul class="chk">
+    <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Installation clé en main en moins de 2 semaines</li>
+    <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Un petit boîtier discret, branché derrière l'écran</li>
+    <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Vos messages modifiables à tout moment, depuis un logiciel simple</li>
+    <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Écran au choix dans notre catalogue, prix sur demande</li>
+    <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>Un interlocuteur unique, basé à Mulhouse</li>
+   </ul>
+   <div class="actions"><a class="btn btn-p" href="#contact">Demander une démo <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a><a class="btn btn-s" href="#location">Voir nos solutions</a></div>
+  </div>
+  <div class="stage" aria-hidden="false">
+   <div class="halo"></div>
+   <svg class="bv" viewBox="70 96 380 222" role="img" aria-label="Rendu stylisé de la Box Vision" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bvF" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#AEBBBD"/><stop offset=".35" stop-color="#E4EAEA"/><stop offset=".6" stop-color="#F3F6F6"/><stop offset="1" stop-color="#9AA8AB"/></linearGradient>
+<linearGradient id="bvT" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".78"/><stop offset="1" stop-color="#DCE9E8" stop-opacity=".96"/></linearGradient>
+<linearGradient id="bvH" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<radialGradient id="bvS" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#0B2E33" stop-opacity=".38"/><stop offset="1" stop-color="#0B2E33" stop-opacity="0"/></radialGradient>
+<filter id="bvg" x="-10%" y="-200%" width="120%" height="500%"><feGaussianBlur stdDeviation="5"/></filter>
+<filter id="bvb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="0.6"/></filter>
+<clipPath id="bvc"><path d="M152 122 H368 L430 212 H90 Z"/></clipPath>
+</defs>
+<ellipse cx="260" cy="304" rx="200" ry="30" fill="url(#bvS)"/><ellipse cx="260" cy="300" rx="150" ry="10" fill="#5CC8BE" opacity=".35" filter="url(#bvg)"/><ellipse cx="0" cy="0" rx="0" ry="0" fill="url(#bvS)"/>
+<path d="M90 214 H430 V272 Q430 290 412 290 H108 Q90 290 90 272 Z" fill="url(#bvF)" stroke="url(#bvF)" stroke-width="10" stroke-linejoin="round"/>
+<path d="M92 258 H428" stroke="#3FD0C2" stroke-width="12" filter="url(#bvg)"/>
+<path d="M96 258 H424" stroke="#D6FFF9" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M152 122 H368 L430 212 H90 Z" fill="url(#bvT)" stroke="#F4F8F8" stroke-width="16" stroke-linejoin="round"/>
+<path d="M152 122 H368 L430 212 H90 Z" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" opacity=".9"/>
+<g clip-path="url(#bvc)"><path d="M152 122 H368 L300 212 H90 Z" fill="url(#bvH)" opacity=".7"/></g>
+<g transform="translate(260,166) scale(0.19,0.078) translate(-395,-419)" filter="url(#bvb)"><defs><mask id="bvm" maskUnits="userSpaceOnUse" x="0" y="0" width="879" height="878"><rect width="879" height="878" fill="#fff"/><path d="M640 160 C580 112 505 97 427 97 C240 97 122 240 122 425 C122 610 245 738 427 738 C535 738 612 716 668 690 V420 H500" fill="none" stroke="#000" stroke-width="62" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><path mask="url(#bvm)" fill-rule="evenodd" fill="#0E5A61" d="M245 80 H470 C600 80 662 160 662 272 C662 360 614 418 527 440 L676 762 H604 L438 450 H310 V762 H245 Z M310 155 V395 H468 C552 395 598 345 598 274 C598 200 552 155 468 155 Z"/><path d="M640 160 C580 112 505 97 427 97 C240 97 122 240 122 425 C122 610 245 738 427 738 C535 738 612 716 668 690 V420 H500" fill="none" stroke="#FF7A1F" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/></g>
+<path d="M86 214 H434" stroke="#fff" stroke-width="1.5" opacity=".8"/>
+</svg>
+   <div class="float glass f1"><i><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></i>Vos promotions</div>
+   <div class="float glass f2"><i><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg></i>Vos horaires</div>
+   <div class="float glass f3"><i><svg class="ic" aria-hidden="true"><use href="#i-cloud-sun"/></svg></i>Vos informations</div>
+  </div>
+ </div>
+</section>
+
+<!-- S2 LOCATION -->
+<section id="location" class="alt soft">
+ <div class="w">
+  <div class="head"><span class="over">Location</span><h2>Comment fonctionne la location d'écrans ?</h2><p class="lead muted">Vous n'avez pas besoin de compétences techniques. Nous nous occupons de l'installation ; vous gardez la main sur vos messages.</p></div>
+  <div class="cards c2 steps">
+   <article class="card glass"><div class="step-n"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></span><span class="num">01</span></div><h3>On étudie votre besoin.</h3><p>Emplacement, type d'écran, messages à diffuser : nous regardons ensemble ce qui est utile pour vos clients ou vos équipes.</p></article>
+   <article class="card glass"><div class="step-n"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-cable"/></svg></span><span class="num">02</span></div><h3>On installe.</h3><p>Nous posons la Box Vision (et l'écran, si vous en prenez un dans notre catalogue), nous la connectons à votre réseau (Wi-Fi ou câble) et nous testons la diffusion. En général, tout est prêt en 1 à 2 semaines.</p></article>
+   <article class="card glass"><div class="step-n"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-mouse-pointer-click"/></svg></span><span class="num">03</span></div><h3>Vous diffusez.</h3><p>Vous programmez vos messages depuis un logiciel simple, avec nos modèles. Formation incluse.</p></article>
+   <article class="card glass"><div class="step-n"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg></span><span class="num">04</span></div><h3>Ça tourne.</h3><p>Les mises à jour de la box partent automatiquement à distance. Si la Box Vision tombe en panne, nous vous en envoyons une neuve en échange.</p></article>
+  </div>
+  <div class="included glass">
+   <h3><svg class="ic" aria-hidden="true"><use href="#i-package"/></svg> Ce qui est compris</h3>
+   <ul>
+    <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Location de la Box Vision : <b>à partir de 35 € TTC/mois</b> (tarif de référence sur 48 mois)</span></li>
+    <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Engagement minimum : 3 mois · facturation mensuelle · achat possible</span></li>
+    <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg><span>Écran : au choix dans notre catalogue, prix sur demande</span></li>
+   </ul>
+  </div>
+  <div class="actions"><a class="btn btn-s" href="#">Voir les formules <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+ </div>
+</section>
+
+<!-- S3 BOX VISION -->
+<section id="box-vision">
+ <div class="w split rev">
+  <div>
+   <span class="over">La Box Vision</span>
+   <h2>Box Vision : le petit boîtier qui transforme n'importe quel écran</h2>
+   <p class="lead muted" style="margin-top:14px">Le cœur de la solution, c'est la Box Vision : un boîtier compact et discret. Elle se branche derrière l'écran et diffuse vos contenus en continu, jour et nuit.</p>
+   <ul class="feat">
+    <li class="glass"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-tv"/></svg></span><div><b>Elle fonctionne avec la plupart des écrans</b><span>Téléviseurs, moniteurs professionnels et murs d'écrans LED. Il suffit d'une prise vidéo standard (HDMI).</span></div></li>
+    <li class="glass"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg></span><div><b>Vous gardez vos écrans si vous en avez déjà</b><span>Nous vérifions qu'ils supportent un affichage prolongé et une luminosité suffisante.</span></div></li>
+    <li class="glass"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg></span><div><b>Elle se met à jour toute seule</b><span>À distance : aucune intervention de votre part.</span></div></li>
+    <li class="glass"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg></span><div><b>En cas de panne</b><span>Nous vous envoyons une Box Vision neuve en échange.</span></div></li>
+   </ul>
+   <div class="actions"><a class="btn btn-s" href="#">Découvrir l'affichage dynamique <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+  </div>
+  <div class="ph tall"><div class="ph-in"><svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg><b>Photo réelle : la Box Vision branchée derrière un écran</b><small>Lumière chaude, échelle lisible (main ou écran visible)</small></div></div>
+ </div>
+</section>
+
+<!-- S4 POUR QUI -->
+<section id="pour-qui" class="alt who soft">
+ <div class="w">
+  <div class="head"><span class="over">Pour qui, pour quoi ?</span><h2>Des écrans utiles pour les commerces, les entreprises et les collectivités</h2></div>
+  <div class="cards c2">
+   <article class="card glass"><div class="ph"><div class="ph-in"><svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg><b>Photo réelle : écran en vitrine</b></div></div><div class="tx"><h3><svg class="ic" aria-hidden="true"><use href="#i-store"/></svg>Commerces</h3><p>Mettez en avant vos promotions et vos nouveautés en vitrine ou dans votre espace de vente.</p></div></article>
+   <article class="card glass"><div class="ph"><div class="ph-in"><svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg><b>Photo réelle : écran dans un hall d'accueil</b></div></div><div class="tx"><h3><svg class="ic" aria-hidden="true"><use href="#i-building-2"/></svg>PME</h3><p>Accueillez vos visiteurs dans le hall et informez vos équipes dans les espaces internes.</p></div></article>
+   <article class="card glass"><div class="ph"><div class="ph-in"><svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg><b>Photo réelle : écran d'information au public</b></div></div><div class="tx"><h3><svg class="ic" aria-hidden="true"><use href="#i-landmark"/></svg>Collectivités</h3><p>Diffusez les horaires, les actualités et les informations pratiques auprès du public.</p></div></article>
+   <article class="card glass"><div class="ph"><div class="ph-in"><svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg><b>Photo réelle : écran sur un stand</b></div></div><div class="tx"><h3><svg class="ic" aria-hidden="true"><use href="#i-party-popper"/></svg>Événements</h3><p>Habillez un salon, un stand ou une manifestation à vos couleurs.</p></div></article>
+  </div>
+  <div class="note glass"><svg class="ic" aria-hidden="true"><use href="#i-cloud-sun"/></svg><p>Vos écrans peuvent afficher la météo, des actualités ou des horaires mis à jour automatiquement, aux couleurs de votre charte graphique.</p></div>
+  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px">
+   <p class="proof"><i><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></i>Déjà installé dans un hypermarché du Haut-Rhin.</p>
+   <div class="actions" style="margin-top:16px"><a class="btn btn-p" href="#contact">Parler de mon projet <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+  </div>
+ </div>
+</section>
+
+<!-- S5 ENGAGEMENTS -->
+<section class="dsec soft">
+ <div class="shape" style="width:360px;height:360px;left:-140px;bottom:-120px;background:#0E4A50;transform:rotate(-14deg)"></div>
+ <div class="w split">
+  <div>
+   <span class="over">Nos engagements</span>
+   <h2>Une agence de proximité à Mulhouse</h2>
+   <p class="lead muted" style="margin-top:14px">Installée au 26 rue Victor Schoelcher à Mulhouse, GR Stratégie accompagne les entreprises d'Alsace, de l'analyse du besoin jusqu'à l'installation.</p>
+   <ul class="feat">
+    <li class="glass"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-graduation-cap"/></svg></span><div><b>Simple à utiliser</b><span>Un logiciel clair, une prise en main rapide, et vos équipes formées.</span></div></li>
+    <li class="glass"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg></span><div><b>Fiable</b><span>Des systèmes testés ; en cas de panne de la box, échange contre une neuve.</span></div></li>
+    <li class="glass"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></span><div><b>Respectueux de vos données</b><span>Des installations maîtrisées, conçues dans le respect du RGPD.</span></div></li>
+   </ul>
+   <div class="actions"><a class="btn btn-s" href="#contact">Nous contacter <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+  </div>
+  <div class="ph tall"><div class="ph-in"><svg class="ic" aria-hidden="true"><use href="#i-camera"/></svg><b>Photo réelle : l'équipe ou les locaux, rue Victor Schoelcher</b><small>Visages réels, lumière naturelle chaude</small></div></div>
+ </div>
+</section>
+
+<!-- S6 SERVICES -->
+<section id="services" class="alt svc soft">
+ <div class="w">
+  <div class="head"><span class="over">Nos autres services</span><h2>Et pour le reste de votre communication</h2><p class="lead muted">Nous créons aussi les supports qui accompagnent votre image.</p></div>
+  <div class="cards c3">
+   <article class="card glass" style="--pc:var(--gr-connect);--pt:var(--gr-connect-text)"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg></span><h3>Sites web professionnels</h3><p>Sites vitrines rapides, accessibles et bien référencés, avec formulaires, carte et liens vers vos réseaux. Hébergement sécurisé et sauvegardes.</p><a class="link" href="#">Création web <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></article>
+   <article class="card glass" style="--pc:var(--gr-ads);--pt:var(--gr-ads-text)"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-printer"/></svg></span><h3>Création graphique et print</h3><p>Cartes de visite, plaquettes, catalogues, affiches, flyers, kakemonos et bâches, prêts pour l'imprimeur.</p><a class="link" href="#">Création print <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></article>
+   <article class="card glass" style="--pc:var(--gr-connect);--pt:var(--gr-connect-text)"><span class="chip-ic"><svg class="ic" aria-hidden="true"><use href="#i-megaphone"/></svg></span><h3>Réseaux sociaux</h3><p>Calendrier de publications, posts adaptés à chaque réseau, photos et vidéos sur le terrain possibles, bilan simple et utile.</p><a class="link" href="#">Community management <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></article>
+  </div>
+  <div class="actions"><a class="btn btn-s" href="#">Voir tous nos services <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+ </div>
+</section>
+
+<!-- S7 CTA -->
+<section id="contact" class="dark cta">
+ <div class="glow"></div><div class="glow2"></div>
+ <div class="w"><div class="panel">
+  <div>
+   <span class="over">Démonstration</span>
+   <h2>Voyez vos futurs écrans en 15 minutes</h2>
+   <p style="margin-top:14px;font-size:var(--gr-fs-lead)">Une démonstration de 15 minutes suffit pour voir le logiciel et un modèle de contenu. Sur place ou en visio, au choix. Dites-nous en quelques mots votre besoin : nous revenons vers vous rapidement.</p>
+   <div class="actions"><a class="btn btn-p" href="#">Demander une démo <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+  </div>
+  <ul class="contact">
+   <li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>Du lundi au vendredi, de 9h à 18h</li>
+   <li><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:contact@grstrategie.fr">contact@grstrategie.fr</a></li>
+   <li><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><span class="tbc">[TÉLÉPHONE]</span></li>
+   <li><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg>26 rue Victor Schoelcher, Mulhouse</li>
+  </ul>
+ </div></div>
+</section>
+</main>
+
+<footer><div class="w">
+ <a class="brand" href="#"><svg class="m" viewBox="92 62 606 714" role="img" aria-label="GR Stratégie" xmlns="http://www.w3.org/2000/svg"><defs><mask id="k2" maskUnits="userSpaceOnUse" x="0" y="0" width="879" height="878"><rect width="879" height="878" fill="#fff"/><path d="M640 160 C580 112 505 97 427 97 C240 97 122 240 122 425 C122 610 245 738 427 738 C535 738 612 716 668 690 V420 H500" fill="none" stroke="#000" stroke-width="54" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><path mask="url(#k2)" fill-rule="evenodd" fill="#FFF7EF" d="M245 80 H470 C600 80 662 160 662 272 C662 360 614 418 527 440 L676 762 H604 L438 450 H310 V762 H245 Z M310 155 V395 H468 C552 395 598 345 598 274 C598 200 552 155 468 155 Z"/><path d="M640 160 C580 112 505 97 427 97 C240 97 122 240 122 425 C122 610 245 738 427 738 C535 738 612 716 668 690 V420 H500" fill="none" stroke="#FF7A1F" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/></svg><b>GR Stratégie</b></a>
+ <span>© <span class="tbc">[année]</span> GR Stratégie · <a href="#">Mentions légales</a> · <a href="#">Confidentialité</a> · SIREN <span class="tbc">[À CONFIRMER]</span></span>
+</div></footer>
+
+<div class="sticky"><a class="btn btn-p" href="#contact">Demander une démo <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></div>
+</body>
+</html>

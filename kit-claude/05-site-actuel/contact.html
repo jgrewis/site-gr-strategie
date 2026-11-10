@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="refresh" content="0; url=/under-construction.html" />
+  <title>Contact — GR Stratégie</title>
+  <meta name="description" content="Parlez-nous de votre projet d’affichage dynamique, écrans pros, contenus ou site web. Réponse rapide et démo sur demande." />
+  <link rel="canonical" href="https://grstrategie.fr/contact" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Contact — GR Stratégie" />
+  <meta property="og:description" content="Parlez-nous de votre projet. Réponse rapide et démo sur demande." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://grstrategie.fr/contact" />
+  <meta property="og:image" content="/assets/og-cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon basé sur mainLogo -->
+  <link rel="icon" type="image/png" href="./img/main-logo.png" />
+  <link rel="apple-touch-icon" href="./img/main-logo.png" />
+  <meta name="theme-color" content="#FF6B35" />
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="gr-strategy.css" />
+</head>
+<body>
+  <a href="#contenu" class="skip-link">Aller au contenu</a>
+  <a href="#pied-de-page" class="skip-link">Aller au pied de page</a>
+
+  <!-- Header partagé injecté via JS -->
+  <div data-include="header"></div>
+
+  <main id="contenu">
+    <!-- HERO compact -->
+    <section aria-label="En-tête" class="hero hero--page hero--compact">
+      <div class="hero__overlay" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <h1>Contactez <span class="accent">GR Stratégie</span></h1>
+          <p class="hero__lead">
+            Dites-nous en quelques mots votre besoin. Nous revenons vers vous rapidement et pouvons organiser une démo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coordonnées + Formulaire -->
+    <section aria-labelledby="contact-titre">
+      <div class="container">
+        <h2 id="contact-titre">Parlez-nous de votre projet</h2>
+
+        <div class="grid grid-2">
+          <!-- Colonne coordonnées -->
+          <div class="scroll-reveal">
+            <div class="card">
+              <h3>Nos coordonnées</h3>
+              <p><strong>GR Stratégie</strong><br>
+                26 rue Victor Schoelcher<br>
+                68200 Mulhouse
+              </p>
+              <p>
+                Mail <a href="mailto:contact@grstrategie.fr">contact@grstrategie.fr</a>
+              </p>
+              <p class="text-muted">Lun–ven · 9h–18h · Alsace / Grand Est</p>
+              <p><a class="btn btn-secondary" href="https://maps.google.com/?q=26+rue+Victor+Schoelcher+68200+Mulhouse">Nous trouver</a></p>
+            </div>
+
+            <div class="card">
+              <h3>Pourquoi nous écrire ?</h3>
+              <ul class="bullets">
+                <li><strong>Affichage dynamique</strong> : écrans, installation, contenus</li>
+                <li><strong>Logiciel</strong> : planification, supervision, widgets</li>
+                <li><strong>Web & Print</strong> : sites vitrines, habillages, supports</li>
+                <li><strong>Démo</strong> : 15 minutes pour voir le pilote en action</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Colonne formulaire -->
+          <div class="scroll-reveal">
+            <div class="card">
+              <h3>Formulaire de contact</h3>
+              <form id="contact-form" method="post" action="/api/contact" novalidate>
+                <div>
+                  <label for="nom">Nom / Entreprise</label>
+                  <input id="nom" name="nom" type="text" autocomplete="name" required placeholder="Ex. Marie Dupont, Hôtel des Vosges" />
+                </div>
+
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" autocomplete="email" required placeholder="vous@exemple.fr" />
+                </div>
+
+                <div>
+                  <label for="tel">Téléphone <span class="text-muted">(optionnel)</span></label>
+                  <input id="tel" name="tel" type="tel" autocomplete="tel" placeholder="+33 6 12 34 56 78" />
+                </div>
+
+                <div>
+                  <label for="sujet">Sujet</label>
+                  <select id="sujet" name="sujet" required>
+                    <option value="">— Choisir —</option>
+                    <option>Affichage dynamique</option>
+                    <option>Logiciel / Démo</option>
+                    <option>Création web</option>
+                    <option>Création print</option>
+                    <option>Autre</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" required placeholder="Décrivez votre contexte, vos écrans, vos objectifs…"></textarea>
+                </div>
+
+                <div>
+                  <label for="delai">Délai souhaité <span class="text-muted">(optionnel)</span></label>
+                  <select id="delai" name="delai">
+                    <option value="">— Indifférent —</option>
+                    <option>Cette semaine</option>
+                    <option>Ce mois-ci</option>
+                    <option>Quart à venir</option>
+                  </select>
+                </div>
+
+                <div>
+                  <input id="rgpd" name="rgpd" type="checkbox" required />
+                  <label for="rgpd">J’accepte que GR Stratégie me contacte au sujet de ma demande.</label>
+                </div>
+
+                <p class="text-muted mt-2">
+                  Vos données ne sont utilisées que pour vous répondre. Voir notre
+                  <a href="/under-construction.html">politique de confidentialité</a>.
+                </p>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Envoyer</button>
+                  <button type="reset" class="btn btn-secondary">Effacer</button>
+                </div>
+
+                <p id="form-success" class="text-brand mt-4 fw-bold is-hidden">
+                  Merci ! Votre demande a bien été envoyée.
+                </p>
+                <p id="form-error" class="text-error mt-4 is-hidden">
+                  Oups, une erreur est survenue. Réessayez ou contactez-nous par téléphone.
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <div data-include="footer"></div>
+
+  <script src="./assets/js/include-header.js" defer></script>
+  <script src="./assets/js/site.js" defer></script>
+</body>
+</html>

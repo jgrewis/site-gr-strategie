@@ -1,0 +1,10 @@
+/* Chargée uniquement sans JavaScript (<noscript>) : menu mobile remplacé par une ligne de liens */
+@media (max-width:1199.98px){
+ .menu{display:none}
+ .site-header{position:relative}
+ .site-header .bar{flex-wrap:wrap;height:auto;padding:8px 12px;gap:4px 16px;border-radius:var(--gr-r-lg)}
+ .nav{display:flex;flex-wrap:wrap;width:100%}
+ .hero{margin-top:0;padding-top:56px}
+}
+/* Formulaire de contact : sans JS, le panneau de rappel reste saisissable (le serveur l'ignore si « rappel » est absent) */
+#rappel-fields[hidden]{display:block}

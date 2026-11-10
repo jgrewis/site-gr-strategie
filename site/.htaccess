@@ -1,0 +1,70 @@
+# GR Stratégie — .htaccess racine (Apache IONOS), écrit à neuf le 09/11/2026
+# HTTPS, URL sans .html, redirections 301 des anciennes URL, en-têtes de sécurité, cache.
+# /api/contact/ a son propre .htaccess (seul index.php y est accessible).
+# Remplace l'ancien .htaccess racine, dont la seule règle (/index.html → /) est reprise à l'étape 3.
+
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+AddDefaultCharset utf-8
+AddType font/woff2 .woff2
+AddType image/svg+xml .svg
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. HTTPS obligatoire (X-Forwarded-Proto : cas d'un proxy en frontal)
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # 2. Fichiers et dossiers cachés (.git, .env, .DS_Store…) : introuvables, sauf .well-known
+  RewriteRule (^|/)\.(?!well-known/) - [R=404,L]
+
+  # 3. Anciennes URL → nouvelles URL (301). THE_REQUEST = demande réelle du visiteur,
+  #    ce qui évite une boucle avec la réécriture interne de l'étape 4.
+  RewriteCond %{THE_REQUEST} \s/+solutions(?:\.html)?[\s?/] [NC]
+  RewriteRule ^ https://%{HTTP_HOST}/affichage-dynamique [R=301,L]
+  RewriteRule ^solutions(?:\.html)?/?$ https://%{HTTP_HOST}/affichage-dynamique [R=301,L,NC]
+  RewriteCond %{THE_REQUEST} \s/+(?:index|home)\.html[\s?] [NC]
+  RewriteRule ^ https://%{HTTP_HOST}/ [R=301,L]
+  RewriteCond %{THE_REQUEST} \s/+(contact|mentions-legales|confidentialite|affichage-dynamique|creation-site-web|community-management|print-affichage-publicitaire)\.html[\s?] [NC]
+  RewriteRule ^ https://%{HTTP_HOST}/%1 [R=301,L]
+  RewriteRule ^ml\.html$ https://%{HTTP_HOST}/mentions-legales [R=301,L,NC]
+  RewriteRule ^under-construction\.html$ https://%{HTTP_HOST}/ [R=301,L,NC]
+
+  # 4. URL propres : /contact → contact.html (seulement si le fichier existe)
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^([a-z-]+)$ $1.html [L]
+</IfModule>
+
+# Fichiers de travail jamais servis
+<FilesMatch "\.(md|bak|old|orig|log|sql|ini|env|sh|py)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  # Reprend la CSP de la balise meta des pages, plus frame-ancestors et upgrade-insecure-requests
+  Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+
+  # Cache : pages toujours revalidées ; CSS/JS 1 semaine (noms de fichiers non versionnés) ; polices et images 30 jours
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  <FilesMatch "\.(woff2|svg|png|ico|webp|jpg)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml application/javascript text/javascript application/json image/svg+xml
+</IfModule>

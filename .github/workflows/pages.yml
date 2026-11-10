@@ -1,0 +1,46 @@
+name: Publication GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ["site/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Le site utilise des chemins absolus (/assets/...) pensés pour grstrategie.fr.
+      # Sur GitHub Pages il est servi sous /<nom-du-repo>/ : on préfixe les chemins
+      # dans une copie, sans modifier site/ (qui reste la livraison Ionos).
+      - name: Préparer la copie pour Pages
+        run: |
+          BASE="/${GITHUB_REPOSITORY#*/}"
+          cp -r site _pages
+          rm -rf _pages/api _pages/.htaccess
+          find _pages -name '*.html' -exec sed -i -E \
+            -e "s#(href|src|action|content)=\"/([^/\"])#\1=\"${BASE}/\2#g" \
+            -e "s#(href|src)=\"/\"#\1=\"${BASE}/\"#g" {} +
+          find _pages -name '*.css' -exec sed -i -E "s#url\(\"/#url(\"${BASE}/#g" {} +
+          touch _pages/.nojekyll
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _pages
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,11 @@
+# /api/contact/ : seul index.php est accessible (README, fichiers cachés… refusés).
+Options -Indexes
+DirectoryIndex index.php
+
+<IfModule mod_authz_core.c>
+    Require all denied
+    # Chaîne vide = requête sur le dossier lui-même (/api/contact/), servie par index.php.
+    <FilesMatch "^(index\.php)?$">
+        Require all granted
+    </FilesMatch>
+</IfModule>

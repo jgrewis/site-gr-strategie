@@ -1,0 +1,47 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site-gr",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765",
+        "--directory",
+        "site"
+      ],
+      "port": 8765
+    },
+    {
+      "name": "site-php",
+      "runtimeExecutable": "/usr/bin/env",
+      "runtimeArgs": [
+        "GR_CONTACT_DRY_RUN=1",
+        "GR_CONTACT_DATA_DIR=/private/tmp/claude-501/-Users-jeanphilippegrewis--claude-spares-spare-nwxRNT/9d8ccc0e-9d36-4b81-b557-390dc4c60ca8/scratchpad/php-data",
+        "php",
+        "-S",
+        "127.0.0.1:8766",
+        "-t",
+        "site",
+        "tests/router.php"
+      ],
+      "port": 8766
+    },
+    {
+      "name": "site-php-test",
+      "runtimeExecutable": "/usr/bin/env",
+      "runtimeArgs": [
+        "GR_CONTACT_DRY_RUN=1",
+        "GR_CONTACT_DATA_DIR=/private/tmp/claude-501/-Users-jeanphilippegrewis--claude-spares-spare-XVhTp0/629fb0e5-f2d9-4c51-abbc-b78580a7e7b8/scratchpad/php-data",
+        "php",
+        "-S",
+        "127.0.0.1:8767",
+        "-t",
+        "site",
+        "tests/router.php"
+      ],
+      "port": 8767
+    }
+  ]
+}

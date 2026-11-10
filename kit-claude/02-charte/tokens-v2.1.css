@@ -1,0 +1,52 @@
+/* GR Stratégie — design tokens v2.1 (proposition, non publiée)
+   v2.1 = v2 validée par JP, fonds et dégradés seulement modifiés :
+   plus de crème / pêche ni de halos orange ; fonds neutres froids + sections sombres.
+   Polices : Plus Jakarta Sans (titres) + Inter (texte), Google Fonts, OFL. Icônes : Lucide (ISC), trait 1,5 px. */
+:root{
+  /* Sarcelle profond — marque, texte, fonds sombres (inchangés) */
+  --gr-ink:#0B2E33;        /* texte principal ; fond de section sombre */
+  --gr-teal-900:#08262A;   /* sarcelle nuit : bande finale, pied de page */
+  --gr-teal-800:#0E3F45;   /* départ du seul dégradé autorisé (sarcelle → encre, sections sombres) */
+  --gr-teal-700:#0E5A61;   /* sarcelle de marque : R du monogramme, liens, bouton secondaire */
+  --gr-teal-600:#13737A;   /* survol des liens */
+  --gr-mint:#5CC8BE;       /* liseré lumineux de la Box Vision, focus sur fond sombre */
+  /* Orange chaud néon — accent uniquement (jamais en fond de section) */
+  --gr-orange:#FF7A1F;        /* G du monogramme, bouton principal (texte encre), filets, chiffres */
+  --gr-orange-600:#F0650A;    /* survol du bouton principal */
+  --gr-orange-text:#B4470B;   /* orange en texte sur fond clair */
+  --gr-orange-on-dark:#FFA264;/* orange en petit texte sur fond sombre et verre sombre */
+  /* Fonds neutres v2.1 */
+  --gr-bg:#F3F5F5;         /* fond de page : blanc cassé froid */
+  --gr-bg-2:#E8EDED;       /* sections claires alternées : gris sarcelle très clair */
+  --gr-line:#D3DCDC;       /* filets, bordures */
+  --gr-white:#FFFFFF;      /* cartes */
+  --gr-muted:#4A6164;      /* texte secondaire sur clair */
+  --gr-muted-on-dark:#B3CACA; /* texte secondaire sur sombre */
+  --gr-dark-grad:linear-gradient(160deg,var(--gr-teal-800) 0%,var(--gr-ink) 60%);
+  /* Pôles (inchangés) + variantes texte */
+  --gr-vision:#E8473F;   --gr-vision-text:#B3261E;   --gr-vision-on-dark:#FF9D93;
+  --gr-connect:#38A8DC;  --gr-connect-text:#0F6A93;  --gr-connect-on-dark:#6CC4EC;
+  --gr-ads:#F5A623;      --gr-ads-text:#8A5600;      --gr-ads-on-dark:#F5A623;
+  /* Verre dépoli */
+  --gr-glass-bg:rgba(255,255,255,.74);
+  --gr-glass-border:rgba(255,255,255,.9);
+  --gr-glass-bg-dark:rgba(255,255,255,.06);
+  --gr-glass-border-dark:rgba(255,255,255,.14);
+  --gr-glass-blur:saturate(140%) blur(18px);
+  --gr-shadow:0 1px 2px rgba(11,46,51,.06),0 10px 28px -10px rgba(11,46,51,.18);
+  --gr-shadow-lg:0 2px 4px rgba(11,46,51,.06),0 30px 60px -20px rgba(11,46,51,.3);
+  --gr-glow-orange:0 0 0 1px rgba(255,122,31,.35),0 8px 26px -6px rgba(255,122,31,.55);
+  /* Formes */
+  --gr-r-sm:10px; --gr-r-md:16px; --gr-r-lg:24px; --gr-r-xl:32px; --gr-r-pill:999px;
+  /* Typographie (inchangée) */
+  --gr-font-title:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gr-font-text:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --gr-fs-display:clamp(2.25rem,1.6rem + 2.8vw,3.5rem);
+  --gr-fs-h2:clamp(1.75rem,1.4rem + 1.4vw,2.5rem);
+  --gr-fs-h3:1.25rem; --gr-fs-lead:1.1875rem; --gr-fs-body:1.0625rem; --gr-fs-small:.875rem; --gr-fs-over:.8125rem;
+  --gr-lh-tight:1.12; --gr-lh-body:1.6;
+  --gr-s1:4px; --gr-s2:8px; --gr-s3:12px; --gr-s4:16px; --gr-s5:24px; --gr-s6:32px; --gr-s7:48px; --gr-s8:64px; --gr-s9:96px;
+  --gr-container:1180px;
+  --gr-focus:0 0 0 3px var(--gr-bg),0 0 0 5px var(--gr-teal-700);
+  --gr-focus-dark:0 0 0 3px var(--gr-ink),0 0 0 5px var(--gr-mint);
+}
