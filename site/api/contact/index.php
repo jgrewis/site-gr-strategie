@@ -413,7 +413,9 @@ function send_mail(array $d): bool
     if (MAIL_DRY_RUN) {
         return dry_run_write(MAIL_TO, $subject, $headers, $body);
     }
-    return mail(MAIL_TO, $subject, $body, $headers, '-f' . MAIL_FROM);
+    // IONOS exige l'expéditeur d'enveloppe (-f). Repli sans lui si la configuration l'interdit.
+    return mail(MAIL_TO, $subject, $body, $headers, '-f' . MAIL_FROM)
+        || mail(MAIL_TO, $subject, $body, $headers);
 }
 
 /** Mode test : écrit le mail composé dans un fichier du dossier temporaire système. */

@@ -3,13 +3,16 @@
   "configurations": [
     {
       "name": "site-gr",
-      "runtimeExecutable": "python3",
+      "runtimeExecutable": "/usr/bin/env",
       "runtimeArgs": [
-        "-m",
-        "http.server",
-        "8765",
-        "--directory",
-        "site"
+        "GR_CONTACT_DRY_RUN=1",
+        "GR_CONTACT_DATA_DIR=/private/tmp/claude-501/-Users-jeanphilippegrewis--claude-spares-spare-4BrWlU/8f697c80-8fb4-4b3f-9943-d9c2832983f8/scratchpad/php-data",
+        "php",
+        "-S",
+        "127.0.0.1:8765",
+        "-t",
+        "site",
+        "tests/router.php"
       ],
       "port": 8765
     },

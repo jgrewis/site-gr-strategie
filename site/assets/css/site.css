@@ -140,6 +140,9 @@ a:hover{color:var(--gr-teal-600)}
 .hero h1 em{font-style:normal;color:var(--gr-white);text-decoration:underline;text-decoration-color:var(--gr-orange);text-decoration-thickness:.07em;text-underline-offset:.14em;text-decoration-skip-ink:none}
 .hero .lead{margin-bottom:12px}
 .hero .muted{max-width:60ch}
+/* Héros sans visuel : les textes prennent toute la largeur */
+.hero-cols{display:grid;gap:8px}
+.hero-cols>div>:last-child{margin-bottom:0}
 
 /* Encart prix */
 .price{display:flex;gap:16px;align-items:center;margin-top:24px;padding:16px 18px;border-radius:var(--gr-r-md)}
@@ -201,6 +204,7 @@ section{padding:72px 0}
 .feat li .chip-ic{width:42px;height:42px;border-radius:12px}
 .feat b{display:block;font-weight:600;margin-bottom:2px}
 .feat span{color:var(--gr-muted)}
+.feat.feat-3{margin-top:0}
 
 /* Emplacements photo provisoires */
 .ph{position:relative;display:grid;place-items:center;text-align:center;gap:6px;min-height:260px;padding:20px;border-radius:var(--gr-r-lg);background:var(--gr-ph-bg);border:1.5px dashed rgba(14,90,97,.4);color:var(--gr-ink);overflow:hidden}
@@ -210,9 +214,20 @@ section{padding:72px 0}
 .ph-in{display:grid;gap:6px;justify-items:center;position:relative;z-index:1}
 .ph.tall{min-height:300px}
 
+/* Photos réelles (remplacent les emplacements .ph) */
+.photo{position:relative;min-height:260px;margin:0;border-radius:var(--gr-r-lg);overflow:hidden;background:var(--gr-ph-bg);box-shadow:var(--gr-shadow)}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photo.tall{min-height:300px}
+.photo .pos-main{object-position:47% 50%}
+.photo .pos-vitrine{object-position:58% 50%}
+.photo .pos-mairie{object-position:50% 38%}
+.photo .pos-stand{object-position:35% 50%}
+.photo .pos-box{object-position:42% 50%}
+
 /* Pour qui */
 .who .card{padding:12px 12px 22px}
-.who .ph{min-height:170px;border-radius:18px}
+.who .ph,.who .photo{min-height:170px;border-radius:18px}
+.who .photo{box-shadow:none}
 .who .card .tx{padding:0 10px}
 .who h3{display:flex;align-items:center;gap:10px}
 .who h3 .ic{color:var(--gr-teal-700)}
@@ -508,6 +523,9 @@ section.legal{padding:var(--gr-s7) 0 var(--gr-s8)}
  .price strong span{font-size:1.5rem}
  .hero{padding:120px 0 80px}
  .hero .grid{grid-template-columns:1fr 1fr;align-items:center;gap:56px}
+ .hero .grid.solo{grid-template-columns:1fr}
+ .hero-cols{grid-template-columns:1.15fr 1fr;gap:56px;align-items:start}
+ .hero-cols .chk,.hero-cols .price{margin-top:0}
  .stage{min-height:540px}
  .stage .bv{width:86%}
  section{padding:104px 0}
@@ -524,7 +542,8 @@ section.legal{padding:var(--gr-s7) 0 var(--gr-s8)}
  .offer .featured .chk{grid-column:2;grid-row:1/3;margin-top:0}
  .offer-price{font-size:1.75rem}
  .who .cards{grid-template-columns:repeat(4,1fr)}
- .ph.tall{min-height:520px}
+ .feat.feat-3{grid-template-columns:repeat(3,1fr)}
+ .ph.tall,.photo.tall{min-height:520px}
 }
 
 /* 1200 px et plus : menu complet (6 entrées + bouton). En dessous, bouton Menu et « Demander une démo » visibles */
