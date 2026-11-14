@@ -176,6 +176,7 @@ def verifier_page(page):
         if l.startswith(("mailto:", "http")):
             continue
         chemin, _, ancre = l.partition("#")
+        chemin = chemin.partition("?")[0]  # ?v=… : numéro de version contre le cache
         if chemin == "" and ancre and ancre not in ids:
             manquants.append(l)
         elif chemin.startswith("/"):
